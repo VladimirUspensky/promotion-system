@@ -1,0 +1,31 @@
+.navbar {
+    background-color: #e4e4e4;
+    color: #242424;
+    font-size: 30px;
+    box-shadow: 20px 20px 10px 5px rgba(0, 0, 0, .5);
+    border-radius: 10px;
+}
+
+.navbar-item {
+    background-color: #e4e4e4;
+    color: #242424;
+    font-size: 25px;
+    margin: 3px;
+    border-radius: 5px;
+    padding: 10px;
+    text-decoration: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+.navbar-item:hover {
+    background-color: #242424;
+    color: white;
+    border-radius: 5px;
+    transition: 1s;
+    text-decoration: none;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+
+

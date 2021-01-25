@@ -1,0 +1,61 @@
+.create-task-block {
+    width: 600px;
+    height: 830px;
+    position: absolute;
+    top: 15%;
+    background-color: #e4e4e4;
+    margin: 1em auto 2em;
+    left: 35%;
+    box-shadow: 20px 20px 10px 5px rgba(0, 0, 0, .5);
+    border-radius: 5px;
+}
+
+.task-field {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 56, 61);
+    display: flex;
+    height: 30px;
+    width: 300px;
+    padding: 10px;
+    margin: 1em auto 2em;;
+    position: relative;
+    top: 20%;
+    border-radius: 5px;
+}
+
+.accounts-input-area {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 56, 61);
+    display: flex;
+    height: 300px;
+    width: 300px;
+    padding: 10px;
+    margin: 1em auto 2em;;
+    position: relative;
+    top: 20%;
+    border-radius: 5px;
+}
+
+.create-task-btn {
+    background: none;
+    font-size: initial;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    font-weight: 700;
+    height: 40px;
+    width: 200px;
+
+    border-radius: 5px;
+    border-color: #e4e4e4;
+    display: flex;
+    transition: 0.5s;
+    box-shadow: none;
+    margin: 1em auto 2em;
+
+
+    position: relative;
+}
+
+.create-task-btn:hover {
+    background-color: #242424;
+}
