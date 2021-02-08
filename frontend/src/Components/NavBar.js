@@ -9,11 +9,7 @@ function NavBar() {
         <span className='project-name'>Promotion System</span>
         <div className='navbar-items-block'>
             <ul className='navbar-items'>
-                <Link to='/accounts' className='navbar-item'>Мои Аккаунты</Link>
-                <Link to='/tasks' className='navbar-item'>Мои задачи</Link>
-                <Link to='/create-task' className='navbar-item'>Создать задачу</Link>
-                <Link to='/stats' className='navbar-item'>Статистика</Link>
-                <Link to='/sign-in' className='navbar-item'>Выйти</Link>
+                <Link to='/login' className='navbar-item'>Logout</Link>
             </ul>
         </div>
     </div>

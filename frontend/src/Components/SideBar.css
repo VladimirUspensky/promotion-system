@@ -3,11 +3,12 @@
     text-decoration: none;
     color: #242424;
     font-size: 30px;
-    box-shadow: 20px 20px 10px 5px rgba(0, 0, 0, .5);
     float: left;
     width: 14%;
     height: 100%;
-    position: absolute;
+    top: 100px;
+    left: 0;
+    position: fixed;
 }
 
 .sidebar-item {
@@ -46,6 +47,7 @@
 }
 
 .dropdown-link:hover {
+    color: #40cfff;
     transition: 0.7s;
     text-decoration: none;
     font-weight: bolder;
@@ -55,7 +57,7 @@
 .sidebar-link {
     color: #c0c0c0;
     border-radius: 5px;
-    padding: 10px;
+    padding: 3px;
     font-size: 20px;
     margin: 3px;
     text-decoration: none;
@@ -64,9 +66,9 @@
 }
 
 .sidebar-link:hover {
+    color: #40cfff;
     transition: 0.7s;
     font-weight: bolder;
     text-decoration: none;
     font-family: Verdana, Arial, Helvetica, sans-serif;
 }
-
