@@ -18,13 +18,12 @@ class SideBar extends React.Component {
             <div className='sidebar'>
             <ul>
                 <li className='sidebar-item'>
-                    <div>
                         {this.state.data.map((dropdownItem, index) => {
                         return (
                             <SubMenu item={dropdownItem} key={index} />
                         )
                     })}
-                    </div>
+
                 </li>
             </ul>
         </div>
