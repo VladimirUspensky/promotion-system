@@ -28,5 +28,5 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls')),
 
-    path('', include('insta_app.api.urls'))
+    path('api/', include('insta_app.api.urls'))
 ]

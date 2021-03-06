@@ -1,12 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class InstagramAccount(models.Model):
     """
-    The model of the user account to be used for promotion,
-    which is connected by the user himself after registration
+    Model of the instagram account of user
     """
-    __tablename__ = 'instagram_account'
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=255, blank=True, null=True)
     phone_number = models.CharField(max_length=18, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
@@ -19,22 +19,23 @@ class InstagramAccount(models.Model):
         }
 
     def __str__(self):
-        return self.username or self.phone_number or self.email
+        return self.username or self.email or self.phone_number
 
 
-class InstagramOrder(models.Model):
+class InstagramTask(models.Model):
     """
-    User order model to promote his account
+    Model of the instagram task
     """
-    __tablename__ = 'order'
-    client = models.ForeignKey(InstagramAccount, on_delete=models.CASCADE)
+    account = models.ForeignKey(InstagramAccount, on_delete=models.CASCADE)
     likes_number = models.PositiveIntegerField(blank=True, null=True)
     subscriptions_number = models.PositiveIntegerField(blank=True, null=True)
-    comments_number = models.PositiveIntegerField(blank=True, null=True)
     unsubscribes_number = models.PositiveIntegerField(blank=True, null=True)
-    is_completed = models.BooleanField(default=False)
+    comments_number = models.PositiveIntegerField(blank=True, null=True)
+    comments_content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'Order {self.id} of client {self.client.id}'
+        return f'Task {self.id} of account {self.account.id}'
+
 
