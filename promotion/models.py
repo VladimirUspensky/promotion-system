@@ -9,7 +9,7 @@ class Review(models.Model):
     to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_from')
     from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='review_to')
     content = models.TextField()
-    grade = models.PositiveIntegerField()
+    grade = models.PositiveIntegerField(default=10)
 
     def __str__(self):
         return f'Review from User: {self.from_user.username} to User: {self.to_user.username}'
@@ -17,10 +17,10 @@ class Review(models.Model):
 
 class Performer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rate = models.IntegerField()
-    average_grade = models.FloatField()
-    solved_tasks_num = models.PositiveIntegerField()
-    failed_tasks_num = models.PositiveIntegerField()
+    rate = models.IntegerField(default=0)
+    average_grade = models.FloatField(default=0)
+    solved_tasks_num = models.PositiveIntegerField(default=0)
+    failed_tasks_num = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f'Performer: {self.user} with Rate: {self.rate}'
@@ -28,9 +28,9 @@ class Performer(models.Model):
 
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rate = models.PositiveIntegerField()
-    average_grade = models.PositiveIntegerField()
-    all_tasks_num = models.PositiveIntegerField()
+    rate = models.PositiveIntegerField(default=0)
+    average_grade = models.PositiveIntegerField(default=0)
+    all_tasks_num = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f'Customer: {self.user} with Rate: {self.rate}'
@@ -59,7 +59,7 @@ class Deal(models.Model):
     performer = models.ForeignKey(Performer, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE, blank=True, null=True)
-    start_deal = models.DateTimeField()
+    start_deal = models.DateTimeField(auto_now_add=True)
     end_deal = models.DateTimeField()
 
     def __str__(self):
@@ -72,15 +72,8 @@ class Message(models.Model):
     performer = models.ForeignKey(Performer, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     content = models.TextField()
-    send_date = models.DateTimeField()
+    send_date = models.DateTimeField(auto_now_add=True)
     is_edited = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Message of Customer: {self.customer} and Performer: {self.performer} that sent {self.send_date}'
-
-
-
-
-
-
-
