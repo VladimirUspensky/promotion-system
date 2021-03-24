@@ -18,17 +18,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.contrib import admin
 from django.urls import path, include
 from insta_app.views import index
-import promotion.api.views as promotion_views
-
-
-router = SimpleRouter()
-router.register(r'review', promotion_views.ReviewViewSet)
-router.register(r'performer', promotion_views.PerformerViewSet)
-router.register(r'customer', promotion_views.CustomerViewSet)
-router.register(r'task', promotion_views.TaskViewSet)
-router.register(r'tag', promotion_views.TagViewSet)
-router.register(r'deal', promotion_views.DealViewSet)
-router.register(r'message', promotion_views.MessageViewSet)
 
 
 urlpatterns = [
@@ -41,7 +30,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('auth/', include('djoser.urls')),
 
-    path('api/', include('insta_app.api.urls'))
+    path('api/', include('promotion.api.urls'))
 ]
 
-urlpatterns += router.urls
+
