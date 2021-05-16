@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Review
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('id', 'to_user', 'from_user', 'mark')
+    list_filter = ('id', 'mark')
+    list_display_links = ('id', )
+    list_per_page = 20
+
+
+admin.site.register(Review, ReviewAdmin)
