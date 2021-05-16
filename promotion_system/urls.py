@@ -1,7 +1,7 @@
-"""promotion_system URL Configuration
+"""course_work URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -13,24 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from rest_framework.routers import SimpleRouter
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 from django.contrib import admin
-from django.urls import path, include
-from insta_app.views import index
-
+from django.urls import path, include, re_path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/accounts/', include('accounts.urls')),
+ #   path('api/tasks/', include('tasks.urls')),
+ #   path('api/reviews/', include('reviews.urls')),
+  #  path('api/notifications/', include('notifications.urls')),
+    path('api/stats/', include('stats.urls')),
+  #  path('api/chat/', include('chat.urls')),
     path('admin/', admin.site.urls),
-    path('', index),
-    path('token/', TokenObtainPairView.as_view()),
-    path('token/refresh/', TokenRefreshView.as_view()),
-    path('token/verify/', TokenVerifyView.as_view()),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-    path('auth/', include('djoser.urls.authtoken')),
-    path('auth/', include('djoser.urls')),
 
-    path('api/', include('promotion.api.urls'))
-]
-
+urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]
 
