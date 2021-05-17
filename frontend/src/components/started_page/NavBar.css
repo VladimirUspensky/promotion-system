@@ -1,0 +1,58 @@
+
+.navbar {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    grid-row: 1;
+    grid-column: 1 / 4;
+    background-color: #0b59cb;
+    border-bottom: 4px solid rgba(0,0,0,.1);
+    box-shadow: 0 3px 10px -2px rgba(0,0,0,.1);
+    font-weight: bold;
+}
+
+.navbar__logo {
+    display: grid;
+    grid-column: 1;
+    justify-self: start;
+    align-self: center;
+    font-size: 23px;
+    margin-left: 10%;
+    color: #dcd6d6;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+}
+
+
+.signup__block {
+    display: grid;
+    grid-column: 4;
+    justify-self: end;
+    align-self: center;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar__item {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 23px;
+    color: #dcd6d6;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    transition: .7s linear;
+}
+
+.item__text {
+    display: grid;
+    justify-self: center;
+    align-self: center;
+}
+
+.navbar__item:hover {
+    background-color: #dcd6d6;
+    color: #222222;
+}
+

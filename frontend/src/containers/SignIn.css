@@ -1,0 +1,35 @@
+.login__form {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    grid-column: 3 / 4;
+    grid-row: 2;
+    margin-right: 50%;
+    height: 10%;
+    width: 100%;
+    background-color: #222222;
+    justify-self: center;
+    align-self: center;
+}
+
+.login__input__block {
+    display: grid;
+    width: 100%;
+    grid-row: 1;
+    grid-template-rows: 1fr 1fr;
+    justify-self: center;
+}
+
+.login__email__input {
+    display: grid;
+    grid-row: 1;
+}
+
+.login__password__input {
+    display: grid;
+    grid-row: 2;
+}
+
+.login__button {
+    display: grid;
+    grid-row: 2;
+}

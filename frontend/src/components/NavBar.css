@@ -1,0 +1,70 @@
+
+
+.navbar {
+    grid-area: navbar;
+    background-color: #fff;
+    box-shadow: 0 3px 10px -2px rgba(0,0,0,.1);
+    border: 2px solid rgba(0,0,0,.1);
+}
+
+.navbar__items {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-gap: 0.5em;
+    align-items: center;
+    text-align: center;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    list-style: none;
+    background-color: #fff;
+
+}
+
+.item__link {
+    display: grid;
+    font-size: 1.2em;
+    height: 100%;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    text-transform: uppercase;
+    color: #222;
+    transition: all .3s ease-in-out;
+}
+
+.item__link:hover {
+    background: rgba(0,0,0,.15);
+}
+
+.navbar__item1 {
+    height: 100%;
+    grid-column: 1;
+}
+
+.navbar__item2 {
+    height: 100%;
+    grid-column: 2;
+}
+
+.navbar__item3 {
+    height: 100%;
+    grid-column: 3;
+}
+
+.navbar__item4 {
+    height: 100%;
+    grid-column: 4;
+}
+
+.navbar__item5 {
+    height: 100%;
+    grid-column: 5;
+}
+
+.navbar__item6 {
+    height: 100%;
+    grid-column: 6;
+}
