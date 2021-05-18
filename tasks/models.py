@@ -11,6 +11,7 @@ class Task(models.Model):
         FAILED = 'failed'
         IN_PROCESS = 'in_process'
         OPEN = 'open'
+        UNDER_REVIEW = 'under_review'
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True)
     title = models.CharField(max_length=255)
     description = models.TextField()

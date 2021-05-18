@@ -22,4 +22,4 @@ class TaskFilter(filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ('title', 'payment', 'status', 'deadline', 'published_date', 'customer__email')
+        fields = ('title', 'payment', 'status', 'deadline', 'published_date', 'customer__email', 'performer__email')

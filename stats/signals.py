@@ -27,6 +27,8 @@ def task_save(sender, instance, created, **kwargs):
         stats.total_tasks_num += 1
     else:
         stats = Stats.objects.filter(user_account=instance.performer).first()
+        if not stats:
+            stats = Stats.objects.create(user_account=instance.performer)
         if instance.status == 'done':
             stats.solved_tasks_num += 1
         elif instance.status == 'failed':
@@ -38,7 +40,9 @@ def task_save(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Review)
 def review_save(sender, instance, created, **kwargs):
     if created:
-        stats = Stats.objects.filter(user_account=instance.to_user)
+        stats = Stats.objects.filter(user_account=instance.to_user).first()
+        if not stats:
+            stats = Stats.objects.create(user_account=instance.to_user).first()
         stats.reviews_num += 1
-        stats.average_mark = (stats.average_mark + instance.mark) / stats.reviews_num
+        stats.average_mark = (stats.average_mark + float(instance.mark)) / stats.reviews_num
         stats.save()

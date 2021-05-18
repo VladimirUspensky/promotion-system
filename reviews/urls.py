@@ -10,4 +10,3 @@ urlpatterns = [
     path('delete/<pk>', ReviewUpdateDeleteView.as_view()),
     path('<pk>', ReviewRetrieveView.as_view())
 ]
-

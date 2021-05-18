@@ -59,9 +59,10 @@ class TaskUpdateView(UpdateAPIView,
     lookup_field = 'slug'
 
     def put(self, request, *args, **kwargs):
-        title = self.request.data['title']
-        new_slug = slugify(title)
-        self.request.data['slug'] = new_slug
+        title = self.request.data.get('title')
+        if title:
+            new_slug = slugify(title)
+            self.request.data['slug'] = new_slug
         return self.partial_update(request, *args, **kwargs)
 
 
