@@ -1,0 +1,26 @@
+.profile__tabs {
+
+}
+
+.tab {
+    background-color: #0b59cb;
+    border: 3px solid black;
+}
+
+.profile__tabs__content {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+    height: 90vh;
+}
+
+.tab__content {
+    display: none;
+    overflow: scroll;
+
+}
+
+.active__tab__content {
+    display: grid;
+}
+

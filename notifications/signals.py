@@ -17,5 +17,6 @@ def reply_save(sender, instance, created, **kwargs):
                                                    from_user=instance.from_user,
                                                    to_user=to_user,
                                                    send_date=instance.send_date,
-                                                   content=instance.content)
+                                                   content=instance.content,
+                                                   status=False)
         notification.save()

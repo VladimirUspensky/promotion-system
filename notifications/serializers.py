@@ -11,11 +11,11 @@ class NotificationSerializer(ModelSerializer):
     to_user = UserAccountSerializer()
 
     class Meta:
-        fields = ('task', 'from_user', 'to_user', 'send_date', 'content')
+        fields = ('id', 'task', 'from_user', 'to_user', 'send_date', 'content', 'status', 'notification_type')
         model = Notification
 
 
 class NotificationCreateSerializer(ModelSerializer):
     class Meta:
-        fields = ('task', 'from_user', 'to_user', 'send_date', 'content')
+        fields = ('id', 'task', 'from_user', 'to_user', 'send_date', 'content', 'status', 'notification_type')
         model = Notification
