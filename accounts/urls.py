@@ -9,9 +9,9 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', UserAccountListView.as_view()),
-    path('update/<email>', UserAccountUpdateView.as_view()),
-    path('signup', SignUpView.as_view()),
-    path('signin', SignInView.as_view()),
-    path('<email>', UserAccountDetailView.as_view())
+    path('', UserAccountListView.as_view(), name='list'),
+    path('update/<email>', UserAccountUpdateView.as_view(), name='update'),
+    path('signup', SignUpView.as_view(), name='signup'),
+    path('signin', SignInView.as_view(), name='signin'),
+    path('<email>', UserAccountDetailView.as_view(), name='detail')
 ]

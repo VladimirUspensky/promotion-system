@@ -13,10 +13,12 @@ class UserAccountManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self, email, first_name, last_name, password):
+    def create_superuser(self, email, first_name, last_name, password, phone=None):
         if not email:
             raise ValueError('Superusers must have an email')
-        user = self.create_user(email, first_name, last_name, password)
+        if not phone:
+            phone = ''
+        user = self.create_user(email, first_name, last_name, phone, password)
         user.is_superuser = True
         user.is_staff = True
         user.save()
