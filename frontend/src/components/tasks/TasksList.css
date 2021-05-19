@@ -1,4 +1,3 @@
-
 .tasks__list {
     grid-area: content;
     display: grid;
@@ -89,30 +88,11 @@
 
 .task__block {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 2fr 3fr;
     justify-self: center;
     width: 70%;
 }
-
-/*.task__block2 {*/
-/*    display: grid;*/
-/*    grid-row: 4;*/
-/*    grid-template-columns: 1fr 1fr;*/
-/*    grid-template-rows: 1fr 2fr 3fr;*/
-/*    justify-self: center;*/
-/*    width: 70%;*/
-/*}*/
-
-/*.task__block3 {*/
-/*    display: grid;*/
-/*    grid-row: 5;*/
-/*    grid-template-columns: 1fr 1fr;*/
-/*    grid-template-rows: 1fr 2fr 3fr;*/
-/*    justify-self: center;*/
-/*    width: 70%;*/
-/*}*/
 
 .task__title__block {
     display: grid;

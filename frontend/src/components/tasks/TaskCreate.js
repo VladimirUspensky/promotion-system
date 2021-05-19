@@ -62,9 +62,7 @@ const TaskCreate = () => {
                                value={payment}
                                onChange={event => onChange(event)}/>
                     </div>
-
                     <button type="submit" className="task__create__button">Create New Task</button>
-
                 </form>
             </div>
 

@@ -1,16 +1,17 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import permissions
+from rest_framework.exceptions import AuthenticationFailed
 
 from .permissions import UserAccountUpdatePermission
 from .serializers import UserAccountSerializer
 from .utils import get_access_token, get_refresh_token
 
+
 User = get_user_model()
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import permissions
-from rest_framework.exceptions import AuthenticationFailed
 
 
 class SignUpView(APIView):

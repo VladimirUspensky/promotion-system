@@ -1,0 +1,117 @@
+.task__create {
+    display: grid;
+    grid-area: content;
+    grid-template-rows: 1fr 10fr;
+}
+
+.task__create__block {
+    display: grid;
+    justify-self: center;
+    align-self: start;
+    margin-bottom: 10%;
+    margin-left: 30%;
+    width: 60%;
+    height: 70%;
+    margin-top: 10%;
+    border: 4px solid rgba(0,0,0,.1);
+    box-shadow: 0 3px 10px -2px rgba(0,0,0,.1);
+}
+
+.task__create__header {
+    display: grid;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    background-color: #ffffff;
+    border: 2px solid rgba(0,0,0,.1);
+    box-shadow: 0 3px 10px -2px rgba(0,0,0,.1);
+    font-weight: bold;
+}
+
+.task__create__header__title {
+    display: grid;
+    align-self: center;
+    font-size: 24px;
+    margin-left: 10px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.task__create__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr 1fr 1fr;
+    width: 100%;
+    height: 100%;
+}
+
+.task__create__title__label {
+    display: grid;
+}
+
+.task__create__title__input {
+    display: grid;
+    justify-self: center;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-bottom: 5px;
+    outline: none;
+    width: 70%;
+}
+
+.task__create__description__textarea {
+    display: grid;
+    grid-column: 1 / 3;
+    width: 70%;
+    justify-self: center;
+    grid-row: 2 / 3;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+.task__create__oneline__inputs {
+    display: grid;
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 5px;
+    width: 70%;
+    justify-self: center;
+}
+
+.task__create__deadline__input {
+    display: grid;
+    grid-column: 1;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-right: 5px;
+    outline: none;
+}
+
+.task__create__payment__input {
+    display: grid;
+    grid-column: 2;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    outline: none;
+}
+
+.task__create__button {
+    display: grid;
+    grid-row: 4;
+    grid-column: 1 / 3;
+    align-self: center;
+    justify-self: center;
+    background-color: #0b59cb;
+    color: #dcd6d6;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 7px;
+}
