@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { signUp } from "../actions/auth";
+import { signUp } from "../../actions/auth";
 import {connect} from "react-redux";
 import "react-toastify/dist/ReactToastify.css"
 import {Button, makeStyles, TextField, Typography} from "@material-ui/core";
