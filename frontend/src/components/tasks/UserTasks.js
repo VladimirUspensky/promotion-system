@@ -3,9 +3,22 @@ import "./UserTasks.css"
 import axios from "axios";
 import PropTypes from "prop-types";
 import ReviewCreateModal from "../ReviewCreateModal";
+import Pagination from "../Pagination";
+import NotFound from "../NotFound";
+import {makeStyles} from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        gridArea: 'content'
+    }
+}))
 
 
 const Task = ({ slug, title, deadline, payment, customer, performer, status, id }) => {
+    const classes = useStyles()
     const [submitType, setSubmitType] = useState('done')
     const [showReviewCreateModal, setShowReviewCreateModal] = useState(false)
 
@@ -49,10 +62,10 @@ const Task = ({ slug, title, deadline, payment, customer, performer, status, id 
     return (
         <div className='user__task'>
                 {
-                    localStorage.getItem('email') === customer.email ? (
+                    localStorage.getItem('email') === performer.email ? (
                         <div className='in__process__task__info'>
-                            <label className='user__task__customer'>{customer.email}</label>
-                            <label className='user__task__title'>{title}</label>
+                            <label className='title'>{title}</label>
+                            <label className='task__label'>{performer.email}</label>
                             <div className='user__task__oneline__labels'>
                                 <label className='user__task__payment'>{payment}</label>
                                 <label className='user__task__deadline'>{deadline}</label>
@@ -77,8 +90,8 @@ const Task = ({ slug, title, deadline, payment, customer, performer, status, id 
                         </div>
                     ) : (
                         <div className='user__task__info'>
-                            <label className='user__task__performer'>{performer.email}</label>
-                            <label className='user__task__title'>{title}</label>
+                            <label className='title'>{title}</label>
+                            <label className='task__label'>{customer.email}</label>
                             <label className='user__task__deadline'>{deadline}</label>
                             <form className='start__chat__form' onSubmit={event => onSubmit(event)}>
                                 <button className='start__chat__button'
@@ -97,8 +110,15 @@ const Task = ({ slug, title, deadline, payment, customer, performer, status, id 
 
 
 const UserTasks = () => {
+    const classes = useStyles()
     const [userTasks, setUserTasks] = useState([])
     const [inProcessTasks, setInProcessTasks] = useState([])
+    const [count, setCount] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [nextPage, setNextPage] = useState('')
+    const [previousPage, setPreviousPage] = useState('')
+    const [filterStatus, setFilterStatus] = useState({choice: 'customer__email'})
+
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -106,46 +126,51 @@ const UserTasks = () => {
         }
     }
 
+    const onChange = event => {
+        console.log(event.target.name)
+        console.log(event.target.value)
+        setFilterStatus({choice: event.target.value})
+    }
+
     useEffect(() => {
-        const  fetchTasks = () => {
-            axios.get(`http://localhost:8000/api/tasks/?performer__email=${localStorage.getItem('email')}`,
-                config)
-                .then(response => {
-                    setInProcessTasks(response.data.results)
-                    console.log('Success')
-                }).catch(error => {
-                    console.log('Fail')
-                    console.log(error)
-            })
-            axios.get(`http://localhost:8000/api/tasks/?customer__email=${localStorage.getItem('email')}`,
-                config)
-                .then(response => {
-                    setUserTasks(response.data.results)
-                    console.log('Success')
-                }).catch(error => {
-                    console.log('Fail')
-                    console.log(error)
-            })
+        const fetchTasks = () => {
+            if (filterStatus.choice === 'performer__email') {
+                axios.get(`http://localhost:8000/api/tasks/?performer__email=${localStorage.getItem('email')}`,
+                config).then(response => {
+                        setInProcessTasks(response.data.results)
+                        setCount(response.data.count)
+                        console.log('Success')
+                        console.log(response.data)
+                     }).catch(error => {
+                        console.log('Fail')
+                        console.log(error)
+                     })
+            } else {
+                console.log(2)
+                axios.get(`http://localhost:8000/api/tasks/?customer__email=${localStorage.getItem('email')}`,
+                config).then(response => {
+                        setUserTasks(response.data.results)
+                        setCount(response.data.count)
+                        console.log('Success')
+                        console.log(userTasks)
+                     }).catch(error => {
+                        console.log('Fail')
+                        console.log(error)
+                     })
+            }
         }
         fetchTasks()
-    }, [])
+    }, [filterStatus])
 
     const displayTasks = () => {
+        let tasks = []
+        if (filterStatus.choice === 'performer__email') {
+            tasks = inProcessTasks
+        } else {
+            tasks = userTasks
+        }
         const displayedTasks = []
-        inProcessTasks.map(task => {
-            return displayedTasks.push(
-                <Task customer={task.customer}
-                      title={task.title}
-                      payment={task.payment}
-                      deadline={task.deadline}
-                      slug={task.slug}
-                      performer={task.performer}
-                      status={task.status}
-                      id={task.id}
-                />
-            )
-        })
-        userTasks.map(task => {
+        tasks.map(task => {
             return displayedTasks.push(
                 <Task customer={task.customer}
                       title={task.title}
@@ -161,11 +186,77 @@ const UserTasks = () => {
         return displayedTasks
     }
 
+    const showNextPage = () => {
+        axios.get(nextPage).then(response => {
+            filterStatus.choice === 'performer__email' ?
+                setInProcessTasks(response.data.results) : (
+                    setUserTasks(response.data.results)
+                )
+            setNextPage(response.data.next)
+            setPreviousPage(response.data.previous)
+            if (nextPage) {
+                setCurrentPage(currentPage + 1)
+            }
+            console.log('Success')
+        }).catch(error => {
+            console.log('Fail')
+            console.log(error)
+        })
+    }
+
+    const showPrevPage = () => {
+        axios.get(previousPage).then(response => {
+            filterStatus.choice === 'performer__email' ?
+                setInProcessTasks(response.data.results) : (
+                    setUserTasks(response.data.results)
+                )
+            setNextPage(response.data.next)
+            setPreviousPage(response.data.previous)
+            if (previousPage) {
+                setCurrentPage(currentPage - 1)
+            }
+        }).catch(error => {
+            console.log('Fail')
+            console.log(error)
+        })
+    }
+
+    const changePage = page => {
+        console.log('Change page')
+    }
+
     return (
-        <div className='user__tasks'>
-            <div className='user__tasks__list'>
-                {displayTasks()}
+        <div className={classes.root}>
+            <div className='filters'>
+                <select className='user__tasks__filters'
+                        onChange={event => onChange(event)}>
+                    <option className='user__tasks__filter'
+                            name='choice'
+                            value='customer__email'
+                            onChange={event => onChange(event)}>published by me</option>
+                    <option className='user__tasks__filter'
+                            name='choice'
+                            value='performer__email'
+                            onChange={event => onChange(event)}>in process</option>
+                </select>
             </div>
+            {
+                userTasks.length > 0 || inProcessTasks.length > 0 ? (
+                    <div>
+                        <div className='user__tasks__list'>
+                            {displayTasks()}
+                        </div>
+                        <Pagination itemsPerPage={3}
+                                    count={count}
+                                    currentPage={currentPage}
+                                    changePage={changePage}
+                                    nextPage={showNextPage}
+                                    prevPage={showPrevPage}
+                        />
+                    </div>
+                ) :
+                    <NotFound title='There is no tasks'/>
+            }
         </div>
     )
 }
@@ -182,3 +273,4 @@ Task.propTypes = {
 }
 
 export default UserTasks
+

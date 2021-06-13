@@ -9,12 +9,12 @@ import NotFound from "./components/NotFound"
 import Layout from "./hocs/Layout";
 import { Provider } from "react-redux";
 import store from "./store";
-import Chat from "./containers/chat/Chat";
 import TasksList from "./components/tasks/TasksList";
 import TaskCreate from "./components/tasks/TaskCreate";
 import Notifications from "./components/Notifications";
-import UserTasks from "./components/tasks/UserTasks";
 import ProfileTabs from "./components/ProfileTabs";
+import UserTasks from "./components/tasks/UserTasks";
+import ChatList from "./components/Chat";
 
 
 class App extends React.Component {
@@ -38,9 +38,9 @@ class App extends React.Component {
                             <Route exact path='/contacts' component={Contacts}/>
                             <Route exact path='/signup' component={SignUp}/>
                             <Route exact path='/signin' component={SignIn}/>
-                            <Route exact path='/chats' component={Chat}/>
                             <Route exact path='/notifications' component={Notifications}/>
                             <Route exact path='/my_tasks' component={UserTasks}/>
+                            <Route exact path='/chats' component={ChatList}/>
                             <Route component={NotFound}/>
                         </Switch>
                     </Layout>

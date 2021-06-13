@@ -32,4 +32,4 @@ class TaskSerializer(serializers.ModelSerializer):
 class TaskCreateUpdateDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = ('slug', 'title', 'description', 'deadline', 'status', 'payment', 'customer')
+        fields = ('slug', 'title', 'description', 'deadline', 'status', 'payment', 'customer', 'performer')

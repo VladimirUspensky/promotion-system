@@ -1,11 +1,25 @@
 import React, {useEffect, useState} from "react";
 import "./Stats.css"
-import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 import axios from "axios";
-import LineChart from "./LineChart";
+import BarChart from "./BarChart";
+import {makeStyles} from "@material-ui/core/styles";
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: '10%',
+        marginLeft: '5%',
+        width: '70%',
+    },
+
+}))
 
 
 const Stats = () => {
+    const classes = useStyles()
     const [barChartData, setBarChartData] = useState({
         solved_tasks_num: 0,
         failed_tasks_num: 0,
@@ -51,17 +65,15 @@ const Stats = () => {
 
 
     return (
-        <div className='stats'>
-            <div>
-                <BarChart solved_tasks_num={solved_tasks_num}
+        <div className={classes.root}>
+                <PieChart solved_tasks_num={solved_tasks_num}
                           failed_tasks_num={failed_tasks_num}
                           created_tasks_num={created_tasks_num}
                           total_tasks_num={total_tasks_num}
                 />
-                <LineChart average_mark={average_tasks_num}
-                           reviews_num={reviews_num}
+                <BarChart average_mark={average_tasks_num}
+                          reviews_num={reviews_num}
                 />
-            </div>
         </div>
     )
 }

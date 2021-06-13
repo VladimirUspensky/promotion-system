@@ -30,4 +30,3 @@ class StatsCreateView(CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Stats.objects.all()
     serializer_class = StatsCreateUpdateSerializer
-

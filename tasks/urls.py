@@ -11,12 +11,13 @@ from .views import (
 )
 
 urlpatterns = [
-    path('', TaskListView.as_view()),
-    path('reply/create', ReplyCreateView.as_view()),
-    path('reply', ReplyListView.as_view()),
-    path('create', TaskCreateView.as_view()),
-    path('search', TaskSearchView.as_view()),
-    path('update/<slug>', TaskUpdateView.as_view()),
-    path('delete/<slug>', TaskDeleteView.as_view()),
-    path('<slug>', TaskRetrieveView.as_view())
+    path('', TaskListView.as_view(), name='task_list'),
+    path('reply/create', ReplyCreateView.as_view(), name='reply_create'),
+    path('reply', ReplyListView.as_view(), name='reply_list'),
+    path('create', TaskCreateView.as_view(), name='task_create'),
+    path('search', TaskSearchView.as_view(), name='task_search'),
+    path('update/<slug>', TaskUpdateView.as_view(), name='task_update'),
+    path('delete/<slug>', TaskDeleteView.as_view(), name='task_delete'),
+    path('<slug>', TaskRetrieveView.as_view(), name='task_detail')
 ]
+

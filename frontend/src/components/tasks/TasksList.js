@@ -3,6 +3,79 @@ import "./TasksList.css"
 import axios from "axios";
 import Task from "./Task";
 import Pagination from "../Pagination";
+import {Checkbox, InputLabel, makeStyles, MenuItem, Select, TextField} from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        width: '50%',
+        height: '100%',
+        justifyContent: 'center',
+        border: '2px solid rgba(0,0,0,.1)',
+        boxShadow: '0 2px 4px -2px blue',
+        marginLeft: '25%',
+        borderTop: 'none',
+    },
+    form: {
+        width: '50%',
+        height: '30%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: '25%',
+        marginTop: '3%',
+        border: '1px solid blue',
+        boxShadow: '0 0 10px'
+
+    },
+
+    filters: {
+        padding: '30px',
+
+    },
+    filterLabel: {
+
+    },
+    selects: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'center',
+    },
+    select: {
+        margin: '10px',
+        width: '50%'
+    },
+    option: {
+
+
+    },
+    inputs: {
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '10px',
+
+    },
+    input: {
+        marginLeft: '15px',
+        marginRight: '15px'
+    },
+    label: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    checkbox_block: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    search: {
+        display: 'flex',
+
+    },
+    search_line: {
+        display: 'flex',
+        width: '100%'
+    }
+}))
 
 
 const TasksList = () => {
@@ -19,7 +92,7 @@ const TasksList = () => {
         publication_date: '',
         email: ''
     })
-
+    const classes = useStyles()
     const {title, status, payment, deadline, publication_date, email} = filters
 
     useEffect(() => {
@@ -118,54 +191,57 @@ const TasksList = () => {
                     Tasks List
                 </div>
             </div>
-            <form className="tasks__list__search" onSubmit={event => onSubmit(event)}>
-                <div className="search__filters__block">
-                    <label className="filters__label"> status
-                        <select className="filters__select"
-                                onChange={event => onChange(event)}
+
+            <form className={classes.root}>
+                <div className={classes.filters}>
+                    <div className={classes.selects}>
+                        <InputLabel id='status-label' className={classes.label}>Status</InputLabel>
+                        <Select labelId='status-label'
+                                className={classes.select}
                                 name='status'
-                                value={status}>
-                            <option className="filters__select__option">open</option>
-                            <option className="filters__select__option">done</option>
-                            <option className="filters__select__option">in_process</option>
-                        </select>
-                    </label>
-                    <label className="filters__label"> payment
-                        <select className="filters__select"
-                                onChange={event => onChange(event)}
+                                value={status}
+                                onChange={event => onChange(event)}>
+                            <MenuItem className={classes.option} value='open'>open</MenuItem>
+                            <MenuItem className={classes.option} value='done'>done</MenuItem>
+                            <MenuItem className={classes.option} value='in_process'>in_process</MenuItem>
+                        </Select>
+
+                        <InputLabel className={classes.label}>Payment</InputLabel>
+                        <Select className={classes.select}
                                 name='payment'
-                                value={payment}>
-                            <option className="filters__select__option">0+</option>
-                            <option className="filters__select__option">1000+</option>
-                            <option className="filters__select__option">2000+</option>
-                            <option className="filters__select__option">5000+</option>
-                            <option className="filters__select__option">10000+</option>
-                            <option className="filters__select__option">25000+</option>
-                        </select>
-                    </label>
-                    <input className='publication__date__input'
-                           name='publication_date'
-                           value={publication_date}
-                           onChange={event => onChange(event)}/>
-                    <input className='deadline__input'
-                           name='deadline'
-                           value={deadline}
-                           onChange={event => onChange(event)}/>
-                    <label className='tasks__checkbox__label'> My Tasks
-                        <input type='checkbox'
-                               className='tasks__checkbox'
-                               name='email'
-                               value={email}
-                               onChange={event => handleCheckbox(event)}/>
-                    </label>
-                </div>
-                <div className="search__input__block">
-                    <label className="search__input__label">
-                        <input className="search__input"
-                               onChange={event => onChange(event)}
-                               name='title'
-                               value={title}/>
-                    </label>
+                                value={payment}
+                                onChange={event => onChange(event)}>
+                            <MenuItem className={classes.option} value='0+'>0+</MenuItem>
+                            <MenuItem className={classes.option} value='1000+'>1000+</MenuItem>
+                            <MenuItem className={classes.option} value='2000+'>2000+</MenuItem>
+                            <MenuItem className={classes.option} value='5000+'>5000+</MenuItem>
+                            <MenuItem className={classes.option} value='10000+'>10000+</MenuItem>
+                            <MenuItem className={classes.option} value='25000+'>25000+</MenuItem>
+                        </Select>
+                    </div>
+
+                    <div className={classes.inputs}>
+                        <InputLabel className={classes.label}>Publication Date</InputLabel>
+                        <TextField className={classes.input}
+                                   name='publication_date'
+                                   value={publication_date}
+                                   onChange={event => onChange(event)}/>
+                        <InputLabel className={classes.label}>Deadline</InputLabel>
+                        <TextField className={classes.input}
+                                   name='deadline'
+                                   value={deadline}
+                                   onChange={event => onChange(event)}/>
+                    </div>
+                    <div className={classes.checkbox_block}>
+                        <InputLabel className={classes.label}>My tasks</InputLabel>
+                        <Checkbox name='email' value={email} onChange={event => onChange(event)}/>
+                    </div>
+                    <div className={classes.search}>
+                        <TextField label='Search'
+                                   className={classes.search_line}
+                                   name='title' value={title}
+                                   onChange={event => onChange(event)}/>
+                    </div>
                 </div>
             </form>
             {displayTasks()}

@@ -4,7 +4,7 @@ import {
     SIGN_UP_SUCCESS,
     SIGN_UP_FAIL,
     LOGOUT
-} from "../../../../promotion_system/frontend/src/actions/types";
+} from "../actions/types";
 
 
 const initialState = {

@@ -2,16 +2,45 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import "./ProfileTabs.css"
 import "./ProfileEditTab.css"
+import {makeStyles} from "@material-ui/core/styles";
+import {Button, TextField} from "@material-ui/core";
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: '10%',
+        marginLeft: '5%',
+        width: '70%'
+    },
+    editName: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    nameInput: {
+        margin: '2% 0 2%',
+        width: '100%'
+    },
+    input: {
+        margin: '2% 0 2%'
+    },
+    button: {
+        width: '30%',
+        marginLeft: '35%'
+    }
+}))
 
 
 const ProfileEditTab = () => {
-     const [profile, setProfile] = useState({
-         email: '',
-         phone: '',
-         first_name: '',
-         last_name: '',
-         password: ''
-     })
+    const classes = useStyles()
+    const [profile, setProfile] = useState({
+        email: '',
+        phone: '',
+        first_name: '',
+        last_name: '',
+        password: ''
+    })
 
     useEffect(() => {
         const fetchProfileDetail = () => {
@@ -61,69 +90,48 @@ const ProfileEditTab = () => {
 
     return (
         <div>
-            <form className="edit__profile" onSubmit={event => onSubmit(event)}>
-                <div className="tab__name">
-                    Edit Profile
-                </div>
-                <div className="avatar">
-                    <img src=""/>
-                </div>
-                <div className="edit__name">
-                    <div className="edit__name__block1">
-                        <label className="edit__name__label">
-                            First Name
-                            <input className="edit__name__input"
-                                   placeholder={profile.first_name}
-                                   name='first_name'
-                                   value={first_name}
-                                   onChange={event => onChange(event)}/>
-                        </label>
-                    </div>
-                    <div className="edit__name__block2">
-                        <label className="edit__name__label">
-                            Last Name
-                            <input className="edit__name__input"
-                                   placeholder={profile.last_name}
-                                   name='last_name'
-                                   value={last_name}
-                                   onChange={event => onChange(event)}/>
-                        </label>
-                    </div>
-                </div>
-                <div className="edit__email">
-                    <label className="edit__email__label">
-                        Edit Email <br/>
-                        <input className="edit__email__input"
-                               placeholder={profile.email}
-                               name='email'
-                               value={email}
+            <form className={classes.root} onSubmit={event => onSubmit(event)}>
+                {/*<div className="avatar">*/}
+                {/*    <img src=""/>*/}
+                {/*</div>*/}
+                <div className={classes.editName}>
+                    <TextField className={classes.nameInput}
+                               variant='outlined'
+                               label="First Name"
+                               name='first_name'
+                               placeholder={first_name}
+                               value={first_name}
                                onChange={event => onChange(event)}/>
-                    </label>
-                </div>
-                <div className="edit__phone">
-                    <label className="edit__phone__label">
-                        Edit Phone <br/>
-                        <input className="edit__phone__input"
-                               placeholder={profile.phone}
-                               name='phone'
-                               value={phone}
+                    <TextField className={classes.nameInput}
+                               name='last_name'
+                               value={last_name}
+                               placeholder={last_name}
+                               variant='outlined'
+                               label='Last Name'
                                onChange={event => onChange(event)}/>
-                    </label>
                 </div>
-                <div className="edit__password">
-                    <label className="edit__password__label">
-                        Edit Password <br/>
-                        <input className="edit__password__input"
-                               type="password"
-                               name='password'
-                               value={password}
-                               placeholder='password'
-                               onChange={event => onChange(event)}/>
-                    </label>
-                </div>
-                <div className="profile__save__button__block">
-                    <button className="profile__save__button" type='submit'>Save</button>
-                </div>
+                <TextField className={classes.input}
+                           name='email'
+                           variant='outlined'
+                           label='Email'
+                           placeholder={email}
+                           value={email}
+                           onChange={event => onChange(event)}/>
+                <TextField className={classes.input}
+                           variant='outlined'
+                           label='Phone'
+                           placeholder={phone}
+                           name='phone'
+                           value={phone}
+                           onChange={event => onChange(event)}/>
+                <TextField className={classes.input}
+                           variant='outlined'
+                           label='Password'
+                           type="password"
+                           name='password'
+                           value={password}
+                           onChange={event => onChange(event)}/>
+                <Button className={classes.button} variant='contained' color='primary' type='submit'>Save</Button>
             </form>
         </div>
     )

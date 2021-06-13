@@ -19,12 +19,12 @@ class SignUpView(APIView):
 
     def post(self, request, format=None):
         request_data = self.request.data
-        email = request_data['email']
-        first_name = request_data['first_name']
-        last_name = request_data['last_name']
-        phone = request_data['phone']
-        password = request_data['password']
-        password2 = request_data['password2']
+        email = request_data.get('email')
+        first_name = request_data.get('first_name')
+        last_name = request_data.get('last_name')
+        phone = request_data.get('phone')
+        password = request_data.get('password')
+        password2 = request_data.get('password2')
 
         if password == password2:
             if phone:
@@ -69,6 +69,7 @@ class SignInView(APIView):
         response.set_cookie(key='refreshtoken', value=refresh, httponly=True)
         response.data = {
             'access': access,
+            'refresh': refresh,
             'user': serialized_user
         }
         return response

@@ -4,10 +4,10 @@ body {
 }
 
 .main__template {
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-columns: 200px auto;
     grid-template-rows: 70px auto;
-    grid-template-areas: "sidebar content"
+    grid-template-areas: "navbar navbar"
                          "sidebar content"
 }

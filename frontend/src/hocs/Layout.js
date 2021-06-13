@@ -1,22 +1,20 @@
 import React from "react";
-//import Navbar from "../components/NavBar"
 import "./Layout.css"
 import SideBar from "../components/SideBar";
-import store from "../store";
-import StartedPage from "../components/started_page/StartedPage";
+import NavBar from "../components/NavBar";
+import {CssBaseline} from "@material-ui/core";
 
-const layout = (props) => (
-    <div className='main__template'>
 
-        <SideBar />
+const layout = (props) => {
 
-        {/*{*/}
-        {/*    store.getState().auth.isAuthenticated ? <SideBar /> : null*/}
-        {/*}*/}
-
-        {props.children}
-    </div>
-)
+    return (
+            <div className='main__template'>
+                <CssBaseline/>
+                <NavBar/>
+                <SideBar/>
+                {props.children}
+            </div>
+    )
+}
 
 export default layout
-

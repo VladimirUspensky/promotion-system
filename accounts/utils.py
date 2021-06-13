@@ -6,6 +6,9 @@ from django.conf import settings
 def get_access_token(user):
     payload = {
         'user_id': user.id,
+        'email': user.email,
+        'first_name': user.first_name,
+        'last_name': user.last_name,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, minutes=5),
         'iat': datetime.datetime.utcnow()
     }

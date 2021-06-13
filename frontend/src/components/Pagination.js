@@ -1,20 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./Pagination.css"
+import {Button, makeStyles} from "@material-ui/core";
+
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '20%',
+        height: '10%',
+        marginLeft: '36%',
+        marginTop: '5%'
+    },
+    arrowButton: {
+        display: 'flex',
+        height: '30px',
+    },
+    numButton: {
+        display: 'flex',
+        height: '30px'
+    }
+}))
+
 
 const PaginationItem = props => {
+    const classes = useStyles()
     return (
-        <button type='submit' className='pagination__item' onClick={() => props.changePage(props.page + 1)}>
+        <Button type='submit'
+                variant='text'
+                className={classes.numButton}
+                onClick={() => props.changePage(props.page + 1)}>
             {props.page}
-        </button>
+        </Button>
     )
 }
 
 
 const Pagination = props => {
+    const classes = useStyles()
     const getPageNums = () => {
         let pages = []
-        let pageNum = 0
+        let pageNum = 1
         console.log(props.count)
         console.log(props.itemsPerPage)
         for (let i = 0; i < props.count; i += props.itemsPerPage) {
@@ -35,14 +62,22 @@ const Pagination = props => {
     }
 
     return (
-        <div className='pagination'>
-            <button type='submit' className='pagination__prev' onClick={props.prevPage}>
+        <div className={classes.root}>
+            <Button type='submit'
+                    color='primary'
+                    variant='contained'
+                    className={classes.arrowButton}
+                    onClick={props.prevPage}>
                 Prev
-            </button>
+            </Button>
             {getPageNums()}
-            <button type='submit' className='pagination__next' onClick={props.nextPage}>
+            <Button type='submit'
+                    color='primary'
+                    variant='contained'
+                    className={classes.arrowButton}
+                    onClick={props.nextPage}>
                 Next
-            </button>
+            </Button>
         </div>
     )
 }
