@@ -4,7 +4,7 @@ import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn"
 import TaskDetail from "./components/tasks/TaskDetail"
 import NotFound from "./components/NotFound"
-import Layout from "./hocs/Layout";
+import Layout from "./components/Layout";
 import { Provider } from "react-redux";
 import store from "./store";
 import TasksList from "./components/tasks/TasksList";

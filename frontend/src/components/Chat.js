@@ -149,17 +149,13 @@ const ChatContent = ({chat, active}) => {
 
     useEffect(() => {
         const checkMessages = () => {
-            console.log('USEEFFECT')
         client.onopen = () => {
             console.log('Websocket client connected')
         }
         client.onmessage = message => {
             const dataFromServer = JSON.parse(message.data)
-            console.log(dataFromServer)
             if (dataFromServer.length > 1) {
-                console.log(dataFromServer)
                 setHistory(parseHistory(dataFromServer))
-                console.log(history)
             } else {
                 console.log('Send message')
                 setHistory([...history, {
@@ -169,7 +165,6 @@ const ChatContent = ({chat, active}) => {
                     room_name: chat.name
                 }])
             }
-            console.log(history)
         }
         }
         checkMessages()
@@ -178,8 +173,6 @@ const ChatContent = ({chat, active}) => {
 
     const fetchHistory = event => {
         event.preventDefault()
-        console.log(newMessage.to_user)
-        console.log(newMessage.from_user)
         client.send(JSON.stringify({
             'type': 'send_chat_history',
             'from_user': newMessage.from_user,
@@ -191,7 +184,6 @@ const ChatContent = ({chat, active}) => {
 
     const sendNewMessage = event => {
         event.preventDefault()
-        console.log(newMessage)
         setHistory([...history, newMessage])
         client.send(JSON.stringify({
             'type': 'send_new_message',
@@ -205,7 +197,6 @@ const ChatContent = ({chat, active}) => {
     const displayMessages = () => {
         let displayedMessages = []
         history.map(message => {
-            console.log(message.from_user.first_name)
             return displayedMessages.push(
                 <Message first_name={message.from_user.first_name}
                          last_name={message.from_user.last_name}
@@ -277,8 +268,6 @@ const Chat = () => {
             axios.get('http://localhost:8000/api/chat/', config).then(response => {
                 console.log('Get chats successfully')
                 setChats(response.data.results)
-                console.log(response.data.results)
-                console.log(chats)
             }).catch(error => {
                 console.log('Fail')
                 console.log(error)

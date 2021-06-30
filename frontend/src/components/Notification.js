@@ -73,7 +73,6 @@ const Notification = ({ id, task, from_user, send_date, status, content, notific
     const deleteNotification = () => {
         axios.delete(`http://localhost:8000/api/notifications/delete/${id}`, config).then(response => {
             console.log('Success')
-            console.log(response.data)
         }).catch(error => {
             console.log('Error')
         })
@@ -86,7 +85,6 @@ const Notification = ({ id, task, from_user, send_date, status, content, notific
             const body = JSON.stringify({status: 'in_process', performer: from_user.id, title: task.title})
             axios.put(`http://localhost:8000/api/tasks/update/${task.slug}`, body, config).then(response => {
                 deleteNotification()
-                console.log(response.data)
                 console.log('Success')
             }).catch(error => {
                 console.log(error)
@@ -120,7 +118,6 @@ const Notification = ({ id, task, from_user, send_date, status, content, notific
             to_user: localStorage.getItem('id')
         })
         axios.post(`http://localhost:8000/api/chat/create/`, body, config).then(response => {
-            console.log('Success created chat')
             setReplyChoiceType('accept')
             //TODO delete other replies and change task status into IN_PROCESS
         }).catch(error => {

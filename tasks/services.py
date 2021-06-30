@@ -3,17 +3,16 @@ from django_filters import rest_framework as filters
 from .models import Task
 
 
-TASK_STATUS_CHOICES = (
-    ('done', 'Done'),
-    ('in_process', 'In_process'),
-    ('failed', 'Failed'),
-    ('open', 'Open')
-)
-
 User = get_user_model()
 
 
 class TaskFilter(filters.FilterSet):
+    TASK_STATUS_CHOICES = (
+        ('done', 'Done'),
+        ('in_process', 'In_process'),
+        ('failed', 'Failed'),
+        ('open', 'Open')
+    )
     title = filters.CharFilter(lookup_expr='startswith')
     payment = filters.RangeFilter()
     status = filters.ChoiceFilter(choices=TASK_STATUS_CHOICES)

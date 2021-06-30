@@ -1,7 +1,7 @@
 import React from "react";
 import "./Layout.css"
-import SideBar from "../components/SideBar";
-import NavBar from "../components/NavBar";
+import SideBar from "./SideBar";
+import NavBar from "./NavBar";
 import {CssBaseline} from "@material-ui/core";
 
 

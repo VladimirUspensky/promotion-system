@@ -58,7 +58,6 @@ const SignUp = ({ signUp, isAuthenticated }) => {
     const onSubmit = event => {
         event.preventDefault()
         signUp({ email, phone, first_name, last_name, password, password2 })
-
     }
     if (isAuthenticated) {
         return <Redirect to='/' />

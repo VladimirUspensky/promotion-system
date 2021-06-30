@@ -10,12 +10,10 @@ import {
 const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
-    loading: false
 }
 
-export default function (state = initialState, action) {
+const auth = (state = initialState, action) => {
     const { type, payload } = action
-
     switch (type) {
         case SIGN_IN_SUCCESS:
             localStorage.setItem('token', payload.access)
@@ -27,13 +25,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 token: payload.access,
-                loading: false,
                 isAuthenticated: true
             }
         case SIGN_UP_SUCCESS:
             return {
                 ...state,
-                loading: true,
                 isAuthenticated: false
             }
         case SIGN_UP_FAIL:
@@ -43,9 +39,10 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isAuthenticated: false,
-                loading: false,
                 token: null
             }
         default: return state
     }
 }
+
+export default auth

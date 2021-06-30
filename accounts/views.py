@@ -8,7 +8,7 @@ from rest_framework.exceptions import AuthenticationFailed
 
 from .permissions import UserAccountUpdatePermission
 from .serializers import UserAccountSerializer
-from .utils import get_access_token, get_refresh_token
+from .services import get_access_token, get_refresh_token
 
 
 User = get_user_model()
@@ -40,7 +40,7 @@ class SignUpView(APIView):
                                             phone=phone,
                                             password=password)
             user.save()
-            return Response({'Success': 'User created successfully'})
+            return Response({'Created': 'User created successfully'})
         else:
             return Response({'Error': 'Passwords must be the same'})
 
@@ -65,8 +65,6 @@ class SignInView(APIView):
         serialized_user = UserAccountSerializer(user).data
         access = get_access_token(user)
         refresh = get_refresh_token(user)
-
-        response.set_cookie(key='refreshtoken', value=refresh, httponly=True)
         response.data = {
             'access': access,
             'refresh': refresh,

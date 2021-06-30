@@ -67,7 +67,7 @@ const ProfileEditTab = () => {
 
      const clear = obj => {
         Object.entries(obj).forEach(([key, value]) => {
-            if (value === "") {
+            if (value === '') {
                 delete obj[key]
             }
             if (key === 'phone' && value.substr(0, 0) === '8') {

@@ -16,19 +16,18 @@ export const signIn = (email, password) => async dispatch => {
         }
     }
     const body = JSON.stringify({ email, password })
-    try {
-        const response = await axios.post('http://localhost:8000/api/accounts/signin', body, config)
+    axios.post('http://localhost:8000/api/accounts/signin', body, config).then(response => {
         dispatch({
             type: SIGN_IN_SUCCESS,
             payload: response.data
         })
         toast.success('Successfully Sign In')
-    } catch (error) {
+    }).catch(error => {
         dispatch({
             type: SIGN_IN_FAIL
         })
         toast.error('Sign In Error')
-    }
+    })
 }
 
 
@@ -39,20 +38,20 @@ export const signUp = ({ email, phone, first_name, last_name, password, password
         }
     }
     const body = JSON.stringify({ email, phone, first_name, last_name, password, password2 })
-    try {
-        const response = await axios.post('http://localhost:8000/api/accounts/signup', body, config)
+    axios.post('http://localhost:8000/api/accounts/signup', body, config).then(response => {
         dispatch({
             type: SIGN_UP_SUCCESS,
             payload: response.data
         })
         console.log(response.data)
         dispatch(signIn(email, password))
-    } catch (error) {
+    }).catch(error => {
         dispatch({
             type: SIGN_UP_FAIL
         })
         toast.error('Sign Up Error')
-    }
+
+    })
 }
 
 

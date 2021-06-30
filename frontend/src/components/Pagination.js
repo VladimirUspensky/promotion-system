@@ -42,11 +42,7 @@ const Pagination = props => {
     const getPageNums = () => {
         let pages = []
         let pageNum = 1
-        console.log(props.count)
-        console.log(props.itemsPerPage)
         for (let i = 0; i < props.count; i += props.itemsPerPage) {
-            console.log('page num')
-            console.log(pageNum)
             if (pageNum === props.currentPage) {
                 pages.push(
                     <PaginationItem page={pageNum} active={true} changePage={props.changePage}/>

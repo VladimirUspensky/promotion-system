@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-
 import "./SideBar.css"
 import {makeStyles} from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';

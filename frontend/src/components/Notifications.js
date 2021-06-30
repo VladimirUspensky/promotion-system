@@ -28,7 +28,6 @@ const Notifications = () => {
         const fetchNotifications = () => {
             axios.get('http://localhost:8000/api/notifications/', config).then(response => {
                 setNotifications(response.data)
-                console.log(notifications)
             }).catch(error => {
 
             })
